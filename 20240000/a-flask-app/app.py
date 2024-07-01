@@ -1,5 +1,35 @@
 from flask import Flask, redirect, render_template, request
 import os
+import mysql.connector
+from mysql.connector import Error
+
+connection = None
+try:
+    connection = mysql.connector.connect(
+        host="....",
+        user="psqladmin",
+        passwd="...",
+        database="...."
+    )
+    print("Connection to MySQL DB successful")
+except Error as e:
+    print(f"The error '{e}' occurred")
+
+cursor = connection.cursor()
+create_table_query = """
+CREATE TABLE IF NOT EXISTS sample_table (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+"""
+try:
+    cursor.execute(create_table_query)
+    connection.commit()
+    print("Table created successfully")
+except Error as e:
+    print(f"The error '{e}' occurred")
+
+
 
 appWeb = Flask(__name__)
 
