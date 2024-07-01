@@ -6,7 +6,7 @@ from mysql.connector import Error
 connection = None
 try:
     connection = mysql.connector.connect(
-        host="....",
+        host="its-rizzoli-idt-mysql-91716.mysql.database.azure.com",
         user="psqladmin",
         passwd="...",
         database="...."
