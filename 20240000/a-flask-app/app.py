@@ -84,8 +84,6 @@ def main():
         risposta = f"The error '{e}' occurred"
     return risposta
 
-    return 'ciao'
-
 @appWeb.route("/prova")
 def prova():
     return "stringa da visualizzare come prova"
