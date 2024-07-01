@@ -3,31 +3,6 @@ import os
 import mysql.connector
 from mysql.connector import Error
 
-connection = None
-try:
-    connection = mysql.connector.connect(
-        host="its-rizzoli-idt-mysql-91716.mysql.database.azure.com",
-        user="psqladmin",
-        passwd='H@Sh1CoR3!',
-        database="...."
-    )
-    print("Connection to MySQL DB successful")
-except Error as e:
-    print(f"The error '{e}' occurred")
-
-cursor = connection.cursor()
-create_table_query = """
-CREATE TABLE IF NOT EXISTS sample_table (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL
-);
-"""
-try:
-    cursor.execute(create_table_query)
-    connection.commit()
-    print("Table created successfully")
-except Error as e:
-    print(f"The error '{e}' occurred")
 
 
 
@@ -85,7 +60,35 @@ loggedUser = None
 
 @appWeb.route("/")
 def main():
-    return "pagina iniziale da visualizzare"
+
+    connection = None
+    try:
+        connection = mysql.connector.connect(
+            host="its-rizzoli-idt-mysql-91716.mysql.database.azure.com",
+            user="psqladmin",
+            passwd='H@Sh1CoR3!',
+            database="...."
+        )
+        print("Connection to MySQL DB successful")
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+    cursor = connection.cursor()
+    create_table_query = """
+    CREATE TABLE IF NOT EXISTS sample_table (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(100) NOT NULL
+    );
+    """
+    try:
+        cursor.execute(create_table_query)
+        connection.commit()
+        print("Table created successfully")
+    except Error as e:
+        print(f"The error '{e}' occurred")
+
+
+    return 'ciao'
 
 @appWeb.route("/prova")
 def prova():
