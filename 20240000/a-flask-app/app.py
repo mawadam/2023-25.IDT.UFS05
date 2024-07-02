@@ -64,7 +64,7 @@ def main():
     connection = None
     try:
         connection = mysql.connector.connect(
-            host="its-rizzoli-idt-mysql-91716.mysql.database.azure.com",
+            host="its-rizzoli-idt-mysql-79658.mysql.database.azure.com",
             user="psqladmin",
             passwd='H@Sh1CoR3!',
             database="new_schema"
